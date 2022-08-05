@@ -103,7 +103,7 @@ using geometry_msgs::msg::Pose;
 
 LaserscanBasedOccupancyGridMapNode::LaserscanBasedOccupancyGridMapNode(
   const rclcpp::NodeOptions & node_options)
-: Node("laserscan_based_occupancy_grid_map_node", node_options)
+: SteeNode("laserscan_based_occupancy_grid_map_node", node_options)
 {
   using std::placeholders::_1;
   using std::placeholders::_2;

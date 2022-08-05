@@ -42,13 +42,19 @@
 #include <deque>
 #include <memory>
 #include <string>
+#include "tilde/stee_subscription.hpp"
+#include "tilde/stee_publisher.hpp"
+#include "tilde/stee_node.hpp"
+#include "tilde/stee_subscription.hpp"
+#include "tilde/stee_publisher.hpp"
+#include "tilde/stee_node.hpp"
 
 namespace pointcloud_preprocessor
 {
 using rcl_interfaces::msg::SetParametersResult;
 using sensor_msgs::msg::PointCloud2;
 
-class DistortionCorrectorComponent : public rclcpp::Node
+class DistortionCorrectorComponent : public tilde::SteeNode
 {
 public:
   explicit DistortionCorrectorComponent(const rclcpp::NodeOptions & options);
@@ -64,10 +70,10 @@ private:
 
   bool undistortPointCloud(const tf2::Transform & tf2_base_link_to_sensor, PointCloud2 & points);
 
-  rclcpp::Subscription<PointCloud2>::SharedPtr input_points_sub_;
-  rclcpp::Subscription<sensor_msgs::msg::Imu>::SharedPtr imu_sub_;
-  rclcpp::Subscription<geometry_msgs::msg::TwistWithCovarianceStamped>::SharedPtr twist_sub_;
-  rclcpp::Publisher<PointCloud2>::SharedPtr undistorted_points_pub_;
+  tilde::SteeSubscription<PointCloud2>::SharedPtr input_points_sub_;
+  tilde::SteeSubscription<sensor_msgs::msg::Imu>::SharedPtr imu_sub_;
+  tilde::SteeSubscription<geometry_msgs::msg::TwistWithCovarianceStamped>::SharedPtr twist_sub_;
+  tilde::SteePublisher<PointCloud2>::SharedPtr undistorted_points_pub_;
 
   std::unique_ptr<tier4_autoware_utils::StopWatch<std::chrono::milliseconds>> stop_watch_ptr_;
   std::unique_ptr<tier4_autoware_utils::DebugPublisher> debug_publisher_;

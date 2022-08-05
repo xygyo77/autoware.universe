@@ -67,7 +67,7 @@ namespace pointcloud_preprocessor
 {
 PointCloudConcatenateDataSynchronizerComponent::PointCloudConcatenateDataSynchronizerComponent(
   const rclcpp::NodeOptions & node_options)
-: Node("point_cloud_concatenator_component", node_options)
+: SteeNode("point_cloud_concatenator_component", node_options)
 {
   // initialize debug tool
   {
@@ -130,7 +130,7 @@ PointCloudConcatenateDataSynchronizerComponent::PointCloudConcatenateDataSynchro
 
   // Publishers
   {
-    pub_output_ = this->create_publisher<PointCloud2>(
+    pub_output_ = this->create_stee_publisher<PointCloud2>(
       "output", rclcpp::SensorDataQoS().keep_last(maximum_queue_size_));
   }
 
@@ -156,7 +156,7 @@ PointCloudConcatenateDataSynchronizerComponent::PointCloudConcatenateDataSynchro
         std::placeholders::_1, input_topics_[d]);
 
       filters_[d].reset();
-      filters_[d] = this->create_subscription<sensor_msgs::msg::PointCloud2>(
+      filters_[d] = this->create_stee_subscription<sensor_msgs::msg::PointCloud2>(
         input_topics_[d], rclcpp::SensorDataQoS().keep_last(maximum_queue_size_), cb);
     }
     auto twist_cb = std::bind(

@@ -76,6 +76,12 @@
 #include <tf2_ros/buffer.h>
 #include <tf2_ros/create_timer_ros.h>
 #include <tf2_ros/transform_listener.h>
+#include "tilde/stee_subscription.hpp"
+#include "tilde/stee_publisher.hpp"
+#include "tilde/stee_node.hpp"
+#include "tilde/stee_subscription.hpp"
+#include "tilde/stee_publisher.hpp"
+#include "tilde/stee_node.hpp"
 
 // Include tier4 autoware utils
 #include <tier4_autoware_utils/ros/debug_publisher.hpp>
@@ -102,7 +108,7 @@ bool get_param(const std::vector<rclcpp::Parameter> & p, const std::string & nam
 /** \brief @b Filter represents the base filter class. Some generic 3D operations that are
  * applicable to all filters are defined here as static methods. \author Radu Bogdan Rusu
  */
-class Filter : public rclcpp::Node
+class Filter : public tilde::SteeNode
 {
 public:
   using PointCloud2 = sensor_msgs::msg::PointCloud2;
@@ -135,10 +141,10 @@ public:
 
 protected:
   /** \brief The input PointCloud2 subscriber. */
-  rclcpp::Subscription<PointCloud2>::SharedPtr sub_input_;
+  tilde::SteeSubscription<PointCloud2>::SharedPtr sub_input_;
 
   /** \brief The output PointCloud2 publisher. */
-  rclcpp::Publisher<PointCloud2>::SharedPtr pub_output_;
+  tilde::SteePublisher<PointCloud2>::SharedPtr pub_output_;
 
   /** \brief The message filter subscriber for PointCloud2. */
   message_filters::Subscriber<PointCloud2> sub_input_filter_;

@@ -24,7 +24,7 @@
 namespace gnss_poser
 {
 GNSSPoser::GNSSPoser(const rclcpp::NodeOptions & node_options)
-: rclcpp::Node("gnss_poser", node_options),
+: SteeNode("gnss_poser", node_options),
   tf2_listener_(tf2_buffer_),
   tf2_broadcaster_(*this),
   base_frame_(declare_parameter("base_frame", "base_link")),
