@@ -34,7 +34,7 @@ using tier4_autoware_utils::calcOffsetPose;
 namespace behavior_path_planner
 {
 PullOutModule::PullOutModule(
-  const std::string & name, rclcpp::Node & node, const PullOutParameters & parameters)
+  const std::string & name, tilde::TildeNode & node, const PullOutParameters & parameters)
 : SceneModuleInterface{name, node},
   parameters_{parameters},
   vehicle_info_{vehicle_info_util::VehicleInfoUtil(node).getVehicleInfo()}

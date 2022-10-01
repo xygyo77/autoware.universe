@@ -17,7 +17,7 @@
 namespace planning_debug_tools
 {
 TrajectoryAnalyzerNode::TrajectoryAnalyzerNode(const rclcpp::NodeOptions & options)
-: Node("trajectory_analyzer", options)
+: TildeNode("trajectory_analyzer", options)
 {
   using TopicNames = std::vector<std::string>;
   const auto path_topics = declare_parameter<TopicNames>("path_topics", TopicNames{});

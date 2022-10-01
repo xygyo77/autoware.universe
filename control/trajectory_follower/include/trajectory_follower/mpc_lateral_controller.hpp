@@ -50,6 +50,8 @@
 #include <string>
 #include <vector>
 
+#include "tilde/tilde_publisher.hpp"
+#include "tilde/tilde_node.hpp"
 namespace autoware
 {
 namespace motion
@@ -68,7 +70,7 @@ public:
   /**
    * @brief constructor
    */
-  explicit MpcLateralController(rclcpp::Node & node);
+  explicit MpcLateralController(tilde::TildeNode & node);
 
   /**
    * @brief destructor
@@ -76,12 +78,12 @@ public:
   virtual ~MpcLateralController();
 
 private:
-  rclcpp::Node * node_;
+  tilde::TildeNode * node_;
 
   //!< @brief topic publisher for predicted trajectory
-  rclcpp::Publisher<autoware_auto_planning_msgs::msg::Trajectory>::SharedPtr m_pub_predicted_traj;
+  tilde::TildePublisher<autoware_auto_planning_msgs::msg::Trajectory>::SharedPtr m_pub_predicted_traj;
   //!< @brief topic publisher for control diagnostic
-  rclcpp::Publisher<autoware_auto_system_msgs::msg::Float32MultiArrayDiagnostic>::SharedPtr
+  tilde::TildePublisher<autoware_auto_system_msgs::msg::Float32MultiArrayDiagnostic>::SharedPtr
     m_pub_diagnostic;
   //!< @brief subscription for transform messages
   rclcpp::Subscription<tf2_msgs::msg::TFMessage>::SharedPtr m_tf_sub;
@@ -202,7 +204,7 @@ private:
 
   bool isSteerConverged(const autoware_auto_control_msgs::msg::AckermannLateralCommand & cmd) const;
 
-  rclcpp::Node::OnSetParametersCallbackHandle::SharedPtr m_set_param_res;
+  tilde::TildeNode::OnSetParametersCallbackHandle::SharedPtr m_set_param_res;
 
   /**
    * @brief Declare MPC parameters as ROS parameters to allow tuning on the fly

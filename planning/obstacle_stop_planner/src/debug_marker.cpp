@@ -40,14 +40,14 @@ using tier4_autoware_utils::createPoint;
 namespace motion_planning
 {
 ObstacleStopPlannerDebugNode::ObstacleStopPlannerDebugNode(
-  rclcpp::Node * node, const double base_link2front)
+  tilde::TildeNode * node, const double base_link2front)
 : node_(node), base_link2front_(base_link2front)
 {
-  virtual_wall_pub_ = node_->create_publisher<MarkerArray>("~/virtual_wall", 1);
-  debug_viz_pub_ = node_->create_publisher<MarkerArray>("~/debug/marker", 1);
-  stop_reason_pub_ = node_->create_publisher<StopReasonArray>("~/output/stop_reasons", 1);
+  virtual_wall_pub_ = node_->create_tilde_publisher<MarkerArray>("~/virtual_wall", 1);
+  debug_viz_pub_ = node_->create_tilde_publisher<MarkerArray>("~/debug/marker", 1);
+  stop_reason_pub_ = node_->create_tilde_publisher<StopReasonArray>("~/output/stop_reasons", 1);
   pub_debug_values_ =
-    node_->create_publisher<Float32MultiArrayStamped>("~/obstacle_stop/debug_values", 1);
+    node_->create_tilde_publisher<Float32MultiArrayStamped>("~/obstacle_stop/debug_values", 1);
 }
 
 bool ObstacleStopPlannerDebugNode::pushPolygon(

@@ -39,6 +39,8 @@
 #include <utility>
 #include <vector>
 
+#include "tilde/tilde_publisher.hpp"
+#include "tilde/tilde_node.hpp"
 namespace behavior_path_planner
 {
 using geometry_msgs::msg::PoseArray;
@@ -64,7 +66,7 @@ class PullOutModule : public SceneModuleInterface
 {
 public:
   PullOutModule(
-    const std::string & name, rclcpp::Node & node, const PullOutParameters & parameters);
+    const std::string & name, tilde::TildeNode & node, const PullOutParameters & parameters);
 
   BehaviorModuleOutput run() override;
 

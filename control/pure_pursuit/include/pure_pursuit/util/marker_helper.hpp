@@ -21,6 +21,8 @@
 
 #include <string>
 
+#include "tilde/tilde_publisher.hpp"
+#include "tilde/tilde_node.hpp"
 namespace pure_pursuit
 {
 inline geometry_msgs::msg::Point createMarkerPosition(double x, double y, double z)

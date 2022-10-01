@@ -28,12 +28,14 @@
 #include <set>
 #include <vector>
 
+#include "tilde/tilde_publisher.hpp"
+#include "tilde/tilde_node.hpp"
 namespace behavior_velocity_planner
 {
 class CrosswalkModuleManager : public SceneModuleManagerInterfaceWithRTC
 {
 public:
-  explicit CrosswalkModuleManager(rclcpp::Node & node);
+  explicit CrosswalkModuleManager(tilde::TildeNode & node);
 
   const char * getModuleName() override { return "crosswalk"; }
 
@@ -49,7 +51,7 @@ private:
 class WalkwayModuleManager : public SceneModuleManagerInterface
 {
 public:
-  explicit WalkwayModuleManager(rclcpp::Node & node);
+  explicit WalkwayModuleManager(tilde::TildeNode & node);
 
   const char * getModuleName() override { return "walkway"; }
 

@@ -26,7 +26,7 @@
 
 namespace behavior_velocity_planner
 {
-IntersectionModuleManager::IntersectionModuleManager(rclcpp::Node & node)
+IntersectionModuleManager::IntersectionModuleManager(tilde::TildeNode & node)
 : SceneModuleManagerInterfaceWithRTC(node, getModuleName())
 {
   const std::string ns(getModuleName());
@@ -59,7 +59,7 @@ IntersectionModuleManager::IntersectionModuleManager(rclcpp::Node & node)
     node.declare_parameter(ns + ".enable_front_car_decel_prediction", false);
 }
 
-MergeFromPrivateModuleManager::MergeFromPrivateModuleManager(rclcpp::Node & node)
+MergeFromPrivateModuleManager::MergeFromPrivateModuleManager(tilde::TildeNode & node)
 : SceneModuleManagerInterface(node, getModuleName())
 {
   const std::string ns(getModuleName());

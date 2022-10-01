@@ -34,6 +34,9 @@
 #include <string>
 #include <vector>
 
+#include "tilde/tilde_publisher.hpp"
+#include "tilde/tilde_node.hpp"
+
 namespace mission_planner
 {
 
@@ -47,7 +50,7 @@ using Route = planning_interface::Route;
 using RouteState = planning_interface::RouteState;
 using Odometry = nav_msgs::msg::Odometry;
 
-class MissionPlanner : public rclcpp::Node
+class MissionPlanner : public tilde::TildeNode
 {
 public:
   explicit MissionPlanner(const rclcpp::NodeOptions & options);
@@ -65,7 +68,7 @@ private:
   Odometry::ConstSharedPtr odometry_;
   void on_odometry(const Odometry::ConstSharedPtr msg);
 
-  rclcpp::Publisher<MarkerArray>::SharedPtr pub_marker_;
+  tilde::TildePublisher<MarkerArray>::SharedPtr pub_marker_;
   void change_route();
   void change_route(const HADMapRoute & route);
 

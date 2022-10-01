@@ -33,6 +33,8 @@
 #include <utility>
 #include <vector>
 
+#include "tilde/tilde_publisher.hpp"
+#include "tilde/tilde_node.hpp"
 namespace behavior_path_planner
 {
 using autoware_auto_planning_msgs::msg::PathWithLaneId;
@@ -42,7 +44,7 @@ class LaneChangeModule : public SceneModuleInterface
 {
 public:
   LaneChangeModule(
-    const std::string & name, rclcpp::Node & node,
+    const std::string & name, tilde::TildeNode & node,
     std::shared_ptr<LaneChangeParameters> parameters);
 
   BehaviorModuleOutput run() override;

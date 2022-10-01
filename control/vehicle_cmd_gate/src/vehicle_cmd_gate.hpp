@@ -42,6 +42,8 @@
 
 #include <memory>
 
+#include "tilde/tilde_publisher.hpp"
+#include "tilde/tilde_node.hpp"
 namespace vehicle_cmd_gate
 {
 
@@ -76,21 +78,21 @@ struct Commands
   }
 };
 
-class VehicleCmdGate : public rclcpp::Node
+class VehicleCmdGate : public tilde::TildeNode
 {
 public:
   explicit VehicleCmdGate(const rclcpp::NodeOptions & node_options);
 
 private:
   // Publisher
-  rclcpp::Publisher<VehicleEmergencyStamped>::SharedPtr vehicle_cmd_emergency_pub_;
-  rclcpp::Publisher<AckermannControlCommand>::SharedPtr control_cmd_pub_;
-  rclcpp::Publisher<GearCommand>::SharedPtr gear_cmd_pub_;
-  rclcpp::Publisher<TurnIndicatorsCommand>::SharedPtr turn_indicator_cmd_pub_;
-  rclcpp::Publisher<HazardLightsCommand>::SharedPtr hazard_light_cmd_pub_;
-  rclcpp::Publisher<GateMode>::SharedPtr gate_mode_pub_;
-  rclcpp::Publisher<EngageMsg>::SharedPtr engage_pub_;
-  rclcpp::Publisher<OperationMode>::SharedPtr operation_mode_pub_;
+  tilde::TildePublisher<VehicleEmergencyStamped>::SharedPtr vehicle_cmd_emergency_pub_;
+  tilde::TildePublisher<AckermannControlCommand>::SharedPtr control_cmd_pub_;
+  tilde::TildePublisher<GearCommand>::SharedPtr gear_cmd_pub_;
+  tilde::TildePublisher<TurnIndicatorsCommand>::SharedPtr turn_indicator_cmd_pub_;
+  tilde::TildePublisher<HazardLightsCommand>::SharedPtr hazard_light_cmd_pub_;
+  tilde::TildePublisher<GateMode>::SharedPtr gate_mode_pub_;
+  tilde::TildePublisher<EngageMsg>::SharedPtr engage_pub_;
+  tilde::TildePublisher<OperationMode>::SharedPtr operation_mode_pub_;
 
   // Subscription
   rclcpp::Subscription<EmergencyState>::SharedPtr emergency_state_sub_;
@@ -165,7 +167,7 @@ private:
   // Service
   rclcpp::Service<tier4_external_api_msgs::srv::Engage>::SharedPtr srv_engage_;
   rclcpp::Service<tier4_external_api_msgs::srv::SetEmergency>::SharedPtr srv_external_emergency_;
-  rclcpp::Publisher<Emergency>::SharedPtr pub_external_emergency_;
+  tilde::TildePublisher<Emergency>::SharedPtr pub_external_emergency_;
   void onEngageService(
     const tier4_external_api_msgs::srv::Engage::Request::SharedPtr request,
     const tier4_external_api_msgs::srv::Engage::Response::SharedPtr response);

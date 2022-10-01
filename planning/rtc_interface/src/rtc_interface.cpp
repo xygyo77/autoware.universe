@@ -68,7 +68,7 @@ Module getModuleType(const std::string & module_name)
 
 namespace rtc_interface
 {
-RTCInterface::RTCInterface(rclcpp::Node * node, const std::string & name)
+RTCInterface::RTCInterface(tilde::TildeNode * node, const std::string & name)
 : logger_{node->get_logger().get_child("RTCInterface[" + name + "]")},
   is_auto_mode_{false},
   is_locked_{false}
@@ -78,7 +78,7 @@ RTCInterface::RTCInterface(rclcpp::Node * node, const std::string & name)
 
   // Publisher
   pub_statuses_ =
-    node->create_publisher<CooperateStatusArray>(cooperate_status_namespace_ + "/" + name, 1);
+    node->create_tilde_publisher<CooperateStatusArray>(cooperate_status_namespace_ + "/" + name, 1);
 
   // Service
   callback_group_ = node->create_callback_group(rclcpp::CallbackGroupType::MutuallyExclusive);

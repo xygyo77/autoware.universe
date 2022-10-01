@@ -22,9 +22,12 @@
 #include <string>
 #include <vector>
 
+#include "tilde/tilde_publisher.hpp"
+#include "tilde/tilde_node.hpp"
+
 namespace rtc_auto_mode_manager
 {
-class RTCAutoModeManagerNode : public rclcpp::Node
+class RTCAutoModeManagerNode : public tilde::TildeNode
 {
 public:
   explicit RTCAutoModeManagerNode(const rclcpp::NodeOptions & node_options);

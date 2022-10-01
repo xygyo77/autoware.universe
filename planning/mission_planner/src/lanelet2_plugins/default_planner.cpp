@@ -110,7 +110,7 @@ void DefaultPlanner::initialize(rclcpp::Node * node)
 {
   is_graph_ready_ = false;
   node_ = node;
-  map_subscriber_ = node_->create_subscription<autoware_auto_mapping_msgs::msg::HADMapBin>(
+  map_subscriber_ = node_->create_tilde_subscription<autoware_auto_mapping_msgs::msg::HADMapBin>(
     "input/vector_map", rclcpp::QoS{10}.transient_local(),
     std::bind(&DefaultPlanner::map_callback, this, std::placeholders::_1));
 }

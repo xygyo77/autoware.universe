@@ -56,7 +56,7 @@ namespace mission_planner
 {
 
 MissionPlanner::MissionPlanner(const rclcpp::NodeOptions & options)
-: Node("mission_planner", options),
+: TildeNode("mission_planner", options),
   arrival_checker_(this),
   plugin_loader_("mission_planner", "mission_planner::PlannerPlugin"),
   tf_buffer_(get_clock()),
@@ -68,16 +68,16 @@ MissionPlanner::MissionPlanner(const rclcpp::NodeOptions & options)
   planner_->initialize(this);
 
   odometry_ = nullptr;
-  sub_odometry_ = create_subscription<Odometry>(
+  sub_odometry_ = create_tilde_subscription<Odometry>(
     "/localization/kinematic_state", rclcpp::QoS(1),
     std::bind(&MissionPlanner::on_odometry, this, std::placeholders::_1));
 
   const auto durable_qos = rclcpp::QoS(1).transient_local();
-  pub_marker_ = create_publisher<MarkerArray>("debug/route_marker", durable_qos);
+  pub_marker_ = create_tilde_publisher<MarkerArray>("debug/route_marker", durable_qos);
 
   const auto adaptor = component_interface_utils::NodeAdaptor(this);
   adaptor.init_pub(pub_state_);
-  adaptor.init_pub(pub_route_);
+  adaptor.init_tilde_pub(pub_route_);
   adaptor.init_srv(srv_clear_route_, this, &MissionPlanner::on_clear_route);
   adaptor.init_srv(srv_set_route_, this, &MissionPlanner::on_set_route);
   adaptor.init_srv(srv_set_route_points_, this, &MissionPlanner::on_set_route_points);

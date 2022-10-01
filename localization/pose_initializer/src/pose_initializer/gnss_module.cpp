@@ -19,10 +19,10 @@
 
 #include <memory>
 
-GnssModule::GnssModule(rclcpp::Node * node)
+GnssModule::GnssModule(tilde::TildeNode * node)
 {
   cli_map_fit_ = node->create_client<RequestHeightFitting>("fit_map_height");
-  sub_gnss_pose_ = node->create_subscription<PoseWithCovarianceStamped>(
+  sub_gnss_pose_ = node->create_tilde_subscription<PoseWithCovarianceStamped>(
     "gnss_pose_cov", 1, [this](PoseWithCovarianceStamped::ConstSharedPtr msg) { pose_ = msg; });
 
   clock_ = node->get_clock();
