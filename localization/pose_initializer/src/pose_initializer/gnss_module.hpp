@@ -20,6 +20,8 @@
 #include <geometry_msgs/msg/pose_with_covariance_stamped.hpp>
 #include <tier4_localization_msgs/srv/pose_with_covariance_stamped.hpp>
 
+#include "tilde/tilde_publisher.hpp"
+#include "tilde/tilde_node.hpp"
 class GnssModule
 {
 private:
@@ -27,7 +29,7 @@ private:
   using RequestHeightFitting = tier4_localization_msgs::srv::PoseWithCovarianceStamped;
 
 public:
-  explicit GnssModule(rclcpp::Node * node);
+  explicit GnssModule(tilde::TildeNode * node);
   PoseWithCovarianceStamped get_pose() const;
 
 private:

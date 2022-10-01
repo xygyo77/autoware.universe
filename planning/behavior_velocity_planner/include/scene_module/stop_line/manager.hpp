@@ -27,6 +27,8 @@
 #include <utility>
 #include <vector>
 
+#include "tilde/tilde_publisher.hpp"
+#include "tilde/tilde_node.hpp"
 namespace behavior_velocity_planner
 {
 using StopLineWithLaneId = std::pair<lanelet::ConstLineString3d, int64_t>;
@@ -34,7 +36,7 @@ using StopLineWithLaneId = std::pair<lanelet::ConstLineString3d, int64_t>;
 class StopLineModuleManager : public SceneModuleManagerInterface
 {
 public:
-  explicit StopLineModuleManager(rclcpp::Node & node);
+  explicit StopLineModuleManager(tilde::TildeNode & node);
 
   const char * getModuleName() override { return "stop_line"; }
 

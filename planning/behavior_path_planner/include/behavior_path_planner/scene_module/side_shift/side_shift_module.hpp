@@ -27,6 +27,8 @@
 #include <string>
 #include <utility>
 
+#include "tilde/tilde_publisher.hpp"
+#include "tilde/tilde_node.hpp"
 namespace behavior_path_planner
 {
 using autoware_auto_planning_msgs::msg::PathWithLaneId;
@@ -51,7 +53,7 @@ class SideShiftModule : public SceneModuleInterface
 {
 public:
   SideShiftModule(
-    const std::string & name, rclcpp::Node & node, const SideShiftParameters & parameters);
+    const std::string & name, tilde::TildeNode & node, const SideShiftParameters & parameters);
 
   bool isExecutionRequested() const override;
   bool isExecutionReady() const override;

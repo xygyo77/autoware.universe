@@ -47,7 +47,7 @@ using tier4_autoware_utils::calcLateralDeviation;
 using tier4_planning_msgs::msg::AvoidanceDebugFactor;
 
 AvoidanceModule::AvoidanceModule(
-  const std::string & name, rclcpp::Node & node, std::shared_ptr<AvoidanceParameters> parameters)
+  const std::string & name, tilde::TildeNode & node, std::shared_ptr<AvoidanceParameters> parameters)
 : SceneModuleInterface{name, node},
   parameters_{std::move(parameters)},
   rtc_interface_left_(&node, "avoidance_left"),

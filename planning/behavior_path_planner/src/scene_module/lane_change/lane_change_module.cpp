@@ -38,7 +38,7 @@ namespace behavior_path_planner
 using autoware_auto_perception_msgs::msg::ObjectClassification;
 
 LaneChangeModule::LaneChangeModule(
-  const std::string & name, rclcpp::Node & node, std::shared_ptr<LaneChangeParameters> parameters)
+  const std::string & name, tilde::TildeNode & node, std::shared_ptr<LaneChangeParameters> parameters)
 : SceneModuleInterface{name, node},
   parameters_{std::move(parameters)},
   rtc_interface_left_(&node, "lane_change_left"),

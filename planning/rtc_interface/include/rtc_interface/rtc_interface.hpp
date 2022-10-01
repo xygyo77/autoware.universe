@@ -31,6 +31,9 @@
 #include <string>
 #include <vector>
 
+#include "tilde/tilde_publisher.hpp"
+#include "tilde/tilde_node.hpp"
+
 namespace rtc_interface
 {
 using tier4_rtc_msgs::msg::Command;
@@ -46,7 +49,7 @@ using unique_identifier_msgs::msg::UUID;
 class RTCInterface
 {
 public:
-  RTCInterface(rclcpp::Node * node, const std::string & name);
+  RTCInterface(tilde::TildeNode * node, const std::string & name);
   void publishCooperateStatus(const rclcpp::Time & stamp);
   void updateCooperateStatus(
     const UUID & uuid, const bool safe, const double start_distance, const double finish_distance,
@@ -64,7 +67,7 @@ private:
     const AutoMode::Request::SharedPtr request, const AutoMode::Response::SharedPtr response);
   rclcpp::Logger getLogger() const;
 
-  rclcpp::Publisher<CooperateStatusArray>::SharedPtr pub_statuses_;
+  tilde::TildePublisher<CooperateStatusArray>::SharedPtr pub_statuses_;
   rclcpp::Service<CooperateCommands>::SharedPtr srv_commands_;
   rclcpp::Service<AutoMode>::SharedPtr srv_auto_mode_;
 

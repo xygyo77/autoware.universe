@@ -31,6 +31,8 @@
 #include <utility>
 #include <vector>
 
+#include "tilde/tilde_publisher.hpp"
+#include "tilde/tilde_node.hpp"
 namespace behavior_path_planner
 {
 using tier4_planning_msgs::msg::AvoidanceDebugMsg;
@@ -38,7 +40,7 @@ class AvoidanceModule : public SceneModuleInterface
 {
 public:
   AvoidanceModule(
-    const std::string & name, rclcpp::Node & node, std::shared_ptr<AvoidanceParameters> parameters);
+    const std::string & name, tilde::TildeNode & node, std::shared_ptr<AvoidanceParameters> parameters);
 
   bool isExecutionRequested() const override;
   bool isExecutionReady() const override;

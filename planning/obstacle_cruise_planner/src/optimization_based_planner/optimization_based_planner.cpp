@@ -35,7 +35,7 @@ constexpr double ZERO_VEL_THRESHOLD = 0.01;
 constexpr double CLOSE_S_DIST_THRESHOLD = 1e-3;
 
 OptimizationBasedPlanner::OptimizationBasedPlanner(
-  rclcpp::Node & node, const LongitudinalInfo & longitudinal_info,
+  tilde::TildeNode & node, const LongitudinalInfo & longitudinal_info,
   const vehicle_info_util::VehicleInfo & vehicle_info)
 : PlannerInterface(node, longitudinal_info, vehicle_info)
 {
@@ -82,11 +82,11 @@ OptimizationBasedPlanner::OptimizationBasedPlanner(
     over_a_weight, over_j_weight);
 
   // publisher
-  optimized_sv_pub_ = node.create_publisher<Trajectory>("~/optimized_sv_trajectory", 1);
-  optimized_st_graph_pub_ = node.create_publisher<Trajectory>("~/optimized_st_graph", 1);
-  boundary_pub_ = node.create_publisher<Trajectory>("~/boundary", 1);
+  optimized_sv_pub_ = node.create_tilde_publisher<Trajectory>("~/optimized_sv_trajectory", 1);
+  optimized_st_graph_pub_ = node.create_tilde_publisher<Trajectory>("~/optimized_st_graph", 1);
+  boundary_pub_ = node.create_tilde_publisher<Trajectory>("~/boundary", 1);
   debug_wall_marker_pub_ =
-    node.create_publisher<visualization_msgs::msg::MarkerArray>("~/debug/wall_marker", 1);
+    node.create_tilde_publisher<visualization_msgs::msg::MarkerArray>("~/debug/wall_marker", 1);
 }
 
 Trajectory OptimizationBasedPlanner::generateCruiseTrajectory(

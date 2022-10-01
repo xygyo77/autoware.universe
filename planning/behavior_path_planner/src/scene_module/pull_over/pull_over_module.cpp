@@ -46,14 +46,14 @@ using tier4_autoware_utils::inverseTransformPose;
 namespace behavior_path_planner
 {
 PullOverModule::PullOverModule(
-  const std::string & name, rclcpp::Node & node, const PullOverParameters & parameters)
+  const std::string & name, tilde::TildeNode & node, const PullOverParameters & parameters)
 : SceneModuleInterface{name, node},
   parameters_{parameters},
   vehicle_info_{vehicle_info_util::VehicleInfoUtil(node).getVehicleInfo()}
 {
   rtc_interface_ptr_ = std::make_shared<RTCInterface>(&node, "pull_over");
   goal_pose_pub_ =
-    node.create_publisher<PoseStamped>("/planning/scenario_planning/modified_goal", 1);
+    node.create_tilde_publisher<PoseStamped>("/planning/scenario_planning/modified_goal", 1);
 
   lane_departure_checker_ = std::make_unique<LaneDepartureChecker>();
   lane_departure_checker_->setVehicleInfo(

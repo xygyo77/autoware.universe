@@ -76,7 +76,7 @@ std::set<int64_t> getCrosswalkIdSetOnPath(
 
 namespace behavior_velocity_planner
 {
-CrosswalkModuleManager::CrosswalkModuleManager(rclcpp::Node & node)
+CrosswalkModuleManager::CrosswalkModuleManager(tilde::TildeNode & node)
 : SceneModuleManagerInterfaceWithRTC(node, getModuleName())
 {
   const std::string ns(getModuleName());
@@ -153,7 +153,7 @@ CrosswalkModuleManager::getModuleExpiredFunction(const PathWithLaneId & path)
   };
 }
 
-WalkwayModuleManager::WalkwayModuleManager(rclcpp::Node & node)
+WalkwayModuleManager::WalkwayModuleManager(tilde::TildeNode & node)
 : SceneModuleManagerInterface(node, getModuleName())
 {
   const std::string ns(getModuleName());

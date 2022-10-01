@@ -31,6 +31,8 @@
 #include <utility>
 #include <vector>
 
+#include "tilde/tilde_publisher.hpp"
+#include "tilde/tilde_node.hpp"
 namespace behavior_path_planner
 {
 using autoware_auto_vehicle_msgs::msg::HazardLightsCommand;
@@ -140,7 +142,7 @@ class PullOverModule : public SceneModuleInterface
 {
 public:
   PullOverModule(
-    const std::string & name, rclcpp::Node & node, const PullOverParameters & parameters);
+    const std::string & name, tilde::TildeNode & node, const PullOverParameters & parameters);
 
   BehaviorModuleOutput run() override;
 
@@ -168,7 +170,7 @@ private:
   const double check_distance_ = 100.0;
 
   rclcpp::Subscription<OccupancyGrid>::SharedPtr occupancy_grid_sub_;
-  rclcpp::Publisher<PoseStamped>::SharedPtr goal_pose_pub_;
+  tilde::TildePublisher<PoseStamped>::SharedPtr goal_pose_pub_;
 
   PUllOverStatus status_;
   OccupancyGridBasedCollisionDetector occupancy_grid_map_;
