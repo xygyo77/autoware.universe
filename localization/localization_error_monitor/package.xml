@@ -13,7 +13,7 @@
 
   <build_depend>autoware_cmake</build_depend>
 
-  <depend>eclcpp</depend>
+  <depend>rclcpp</depend>
   <depend>tilde</depend>
   <depend>tilde_msg</depend>
   <depend>diagnostic_msgs</depend>
