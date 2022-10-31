@@ -24,7 +24,7 @@
 namespace mission_planner
 {
 
-ArrivalChecker::ArrivalChecker(rclcpp::Node * node) : vehicle_stop_checker_(node)
+ArrivalChecker::ArrivalChecker(tilde::TildeNode * node) : vehicle_stop_checker_(node)
 {
   const double angle_deg = node->declare_parameter<double>("arrival_check_angle_deg");
   angle_ = tier4_autoware_utils::deg2rad(angle_deg);

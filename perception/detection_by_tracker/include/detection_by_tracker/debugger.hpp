@@ -83,13 +83,13 @@ public:
   }
 
 private:
-  rclcpp::Publisher<autoware_auto_perception_msgs::msg::DetectedObjects>::SharedPtr
+  tilde::tildePublisher<autoware_auto_perception_msgs::msg::DetectedObjects>::SharedPtr
     initial_objects_pub_;
-  rclcpp::Publisher<autoware_auto_perception_msgs::msg::DetectedObjects>::SharedPtr
+  tilde::tildePublisher<autoware_auto_perception_msgs::msg::DetectedObjects>::SharedPtr
     tracked_objects_pub_;
-  rclcpp::Publisher<autoware_auto_perception_msgs::msg::DetectedObjects>::SharedPtr
+  tilde::tildePublisher<autoware_auto_perception_msgs::msg::DetectedObjects>::SharedPtr
     merged_objects_pub_;
-  rclcpp::Publisher<autoware_auto_perception_msgs::msg::DetectedObjects>::SharedPtr
+  tilde::tildePublisher<autoware_auto_perception_msgs::msg::DetectedObjects>::SharedPtr
     divided_objects_pub_;
 
   autoware_auto_perception_msgs::msg::DetectedObjects removeFeature(

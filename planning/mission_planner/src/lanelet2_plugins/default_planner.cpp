@@ -106,7 +106,7 @@ double project_goal_to_map(
 namespace mission_planner::lanelet2
 {
 
-void DefaultPlanner::initialize(rclcpp::Node * node)
+void DefaultPlanner::initialize(tilde::TildeNode * node)
 {
   is_graph_ready_ = false;
   node_ = node;

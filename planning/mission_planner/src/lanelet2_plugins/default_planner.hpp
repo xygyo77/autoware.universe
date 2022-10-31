@@ -38,7 +38,7 @@ namespace mission_planner::lanelet2
 class DefaultPlanner : public mission_planner::PlannerPlugin
 {
 public:
-  void initialize(rclcpp::Node * node) override;
+  void initialize(tilde::TildeNode * node) override;
   bool ready() const override;
   HADMapRoute plan(const RoutePoints & points) override;
   MarkerArray visualize(const HADMapRoute & route) const override;
@@ -54,7 +54,7 @@ private:
   lanelet::ConstLanelets shoulder_lanelets_;
   route_handler::RouteHandler route_handler_;
 
-  rclcpp::Node * node_;
+  tilde::TildeNode * node_;
   rclcpp::Subscription<autoware_auto_mapping_msgs::msg::HADMapBin>::SharedPtr map_subscriber_;
 
   void map_callback(const autoware_auto_mapping_msgs::msg::HADMapBin::ConstSharedPtr msg);

@@ -22,11 +22,11 @@ include_directories(
 )
 
 add_library(compare_map_segmentation SHARED
-  src/distance_based_compare_map_filter_nodelet.cpp
-  src/voxel_based_approximate_compare_map_filter_nodelet.cpp
-  src/voxel_based_compare_map_filter_nodelet.cpp
-  src/voxel_distance_based_compare_map_filter_nodelet.cpp
-  src/compare_elevation_map_filter_node.cpp
+  src/src/distance_based_compare_map_filter_nodelet.cpp
+  src/src/voxel_based_approximate_compare_map_filter_nodelet.cpp
+  src/src/voxel_based_compare_map_filter_nodelet.cpp
+  src/src/voxel_distance_based_compare_map_filter_nodelet.cpp
+  src/src/compare_elevation_map_filter_node.cpp
 )
 
 target_link_libraries(compare_map_segmentation

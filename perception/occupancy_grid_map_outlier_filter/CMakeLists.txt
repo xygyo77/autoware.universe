@@ -24,6 +24,7 @@ include_directories(
 
 ament_auto_add_library(occupancy_grid_map_outlier_filter SHARED
   src/occupancy_grid_map_outlier_filter_nodelet.cpp
+  src/occupancy_grid_map/occupancy_grid_map_outlier_filter_nodelet.cpp
 )
 
 target_link_libraries(occupancy_grid_map_outlier_filter

@@ -23,6 +23,8 @@
 
 #include <vector>
 
+#include "tilde/tilde_publisher.hpp"
+#include "tilde/tilde_node.hpp"
 namespace mission_planner
 {
 
@@ -34,7 +36,7 @@ public:
   using MarkerArray = visualization_msgs::msg::MarkerArray;
 
   virtual ~PlannerPlugin() = default;
-  virtual void initialize(rclcpp::Node * node) = 0;
+  virtual void initialize(tilde::TildeNode * node) = 0;
   virtual bool ready() const = 0;
   virtual HADMapRoute plan(const RoutePoints & points) = 0;
   virtual MarkerArray visualize(const HADMapRoute & route) const = 0;

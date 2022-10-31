@@ -78,7 +78,7 @@ struct NdtResult
   std::vector<geometry_msgs::msg::Pose> transformation_array;
 };
 
-class NDTScanMatcher : public tilde::TildeNode
+struct NDTParams
 {
   double trans_epsilon;
   double step_size;

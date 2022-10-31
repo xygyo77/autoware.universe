@@ -36,7 +36,7 @@ class LIDAR_APOLLO_SEGMENTATION_TVM_NODES_PUBLIC ApolloLidarSegmentationNode : p
 {
 private:
   const rclcpp::Subscription<sensor_msgs::msg::PointCloud2>::SharedPtr m_cloud_sub_ptr;
-  const rclcpp::Publisher<tier4_perception_msgs::msg::DetectedObjectsWithFeature>::SharedPtr
+  const tilde::tildePublisher<tier4_perception_msgs::msg::DetectedObjectsWithFeature>::SharedPtr
     m_detected_pub_ptr;
   const std::shared_ptr<lidar_apollo_segmentation_tvm::ApolloLidarSegmentation> m_detector_ptr;
   /// \brief Main callback function.

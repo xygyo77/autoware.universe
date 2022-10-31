@@ -29,6 +29,9 @@
 #include <mutex>
 #include <string>
 #include <vector>
+
+#include "tilde/tilde_publisher.hpp"
+#include "tilde/tilde_node.hpp"
 namespace compare_map_segmentation
 {
 class CompareElevationMapFilterComponent : public pointcloud_preprocessor::Filter
@@ -40,7 +43,7 @@ protected:
 private:
   rclcpp::Subscription<grid_map_msgs::msg::GridMap>::SharedPtr sub_map_;
 
-  rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr pub_filtered_cloud_;
+  tilde::tildePublisher<sensor_msgs::msg::PointCloud2>::SharedPtr pub_filtered_cloud_;
   grid_map::GridMap elevation_map_;
   cv::Mat elevation_image_;
   grid_map::Matrix elevation_map_data_;

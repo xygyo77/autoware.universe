@@ -63,8 +63,8 @@ protected:
     const PointCloud2ConstPtr & input, const IndicesPtr & indices, PointCloud2 & output) override;
 
 private:
-  rclcpp::Publisher<geometry_msgs::msg::PoseArray>::SharedPtr debug_pose_array_pub_;
-  rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr debug_ground_cloud_pub_;
+  tilde::tildePublisher<geometry_msgs::msg::PoseArray>::SharedPtr debug_pose_array_pub_;
+  tilde::tildePublisher<sensor_msgs::msg::PointCloud2>::SharedPtr debug_ground_cloud_pub_;
 
   std::string base_frame_ = "base_link";
   std::string unit_axis_ = "z";
