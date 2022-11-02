@@ -63,7 +63,6 @@ ament_auto_add_library(pointcloud_preprocessor_filter SHARED
   src/blockage_diag/blockage_diag_nodelet.cpp
   src/polygon_remover/polygon_remover.cpp
   src/vector_map_filter/vector_map_inside_area_filter.cpp
-  src/filter/filter.cpp
 )
 
 target_link_libraries(pointcloud_preprocessor_filter
