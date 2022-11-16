@@ -212,6 +212,10 @@ NDTScanMatcher::NDTScanMatcher()
   ndt_monte_carlo_initial_pose_marker_pub_ =
     this->create_tilde_publisher<visualization_msgs::msg::MarkerArray>(
       "monte_carlo_initial_pose_marker", 10);
+  // add: for tilde timing monitor topic
+  for_tilde_interpolator_pose_pub_ =
+    this->create_tilde_publisher<geometry_msgs::msg::PoseWithCovarianceStamped>(
+      "for_tilde_interpolator_pose", 10);
 
   diagnostics_pub_ =
     this->create_tilde_publisher<diagnostic_msgs::msg::DiagnosticArray>("/diagnostics", 10);
@@ -741,8 +745,12 @@ std::optional<Eigen::Matrix4f> NDTScanMatcher::interpolate_regularization_pose(
 
   // if the interpolate_pose fails, 0.0 is stored in the stamp
   if (rclcpp::Time(interpolator.get_current_pose().header.stamp).seconds() == 0.0) {
+    // RCLCPP_WARN(get_logger(), "!!! interpolate_pose fails");
     return std::nullopt;
   }
+  // add: for tilde timing monitor topic
+  // RCLCPP_WARN(get_logger(), "!!! interpolate_pose sec=%u", interpolator.get_current_pose().header.stamp.sec);
+  for_tilde_interpolator_pose_pub_->publish(interpolator.get_current_pose());
 
   return pose_to_matrix4f(interpolator.get_current_pose().pose.pose);
 }

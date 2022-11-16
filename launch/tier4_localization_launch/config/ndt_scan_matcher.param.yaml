@@ -61,7 +61,8 @@
       ]
 
     # Regularization switch
-    regularization_enabled: false
+    #regularization_enabled: false
+    regularization_enabled: true
 
     # regularization scale factor
     regularization_scale_factor: 0.01
