@@ -180,6 +180,8 @@ private:
 
   rclcpp::Service<tier4_localization_msgs::srv::PoseWithCovarianceStamped>::SharedPtr service_;
   rclcpp::Service<std_srvs::srv::SetBool>::SharedPtr service_trigger_node_;
+  tilde::TildePublisher<geometry_msgs::msg::PoseWithCovarianceStamped>::SharedPtr
+    for_tilde_interpolator_pose_pub_;
 
   tf2_ros::TransformBroadcaster tf2_broadcaster_;
 

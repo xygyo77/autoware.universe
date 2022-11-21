@@ -212,6 +212,10 @@ NDTScanMatcher::NDTScanMatcher()
   ndt_monte_carlo_initial_pose_marker_pub_ =
     this->create_publisher<visualization_msgs::msg::MarkerArray>(
       "monte_carlo_initial_pose_marker", 10);
+  // add: for tilde timing monitor topic
+  for_tilde_interpolator_pose_pub_ =
+    this->create_tilde_publisher<geometry_msgs::msg::PoseWithCovarianceStamped>(
+      "for_tilde_interpolator_pose", 10);
 
   diagnostics_pub_ =
     this->create_publisher<diagnostic_msgs::msg::DiagnosticArray>("/diagnostics", 10);
@@ -482,6 +486,8 @@ void NDTScanMatcher::callback_sensor_points(
   publish_initial_to_result_distances(
     sensor_ros_time, ndt_result.pose, interpolator.get_current_pose(), interpolator.get_old_pose(),
     interpolator.get_new_pose());
+  // add: for tilde timing monitor topic
+  for_tilde_interpolator_pose_pub_->publish(interpolator.get_new_pose());
 
   auto sensor_points_mapTF_ptr = std::make_shared<pcl::PointCloud<PointSource>>();
   pcl::transformPointCloud(
