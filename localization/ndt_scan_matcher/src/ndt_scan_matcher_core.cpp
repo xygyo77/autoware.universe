@@ -214,7 +214,7 @@ NDTScanMatcher::NDTScanMatcher()
       "monte_carlo_initial_pose_marker", 10);
   // add: for tilde timing monitor topic
   for_tilde_interpolator_pose_pub_ =
-    this->create_tilde_publisher<geometry_msgs::msg::PoseWithCovarianceStamped>(
+    this->create_publisher<geometry_msgs::msg::PoseWithCovarianceStamped>(
       "for_tilde_interpolator_pose", 10);
 
   diagnostics_pub_ =

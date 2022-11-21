@@ -177,11 +177,11 @@ private:
   rclcpp::Publisher<visualization_msgs::msg::MarkerArray>::SharedPtr
     ndt_monte_carlo_initial_pose_marker_pub_;
   rclcpp::Publisher<diagnostic_msgs::msg::DiagnosticArray>::SharedPtr diagnostics_pub_;
+  rclcpp::Publisher<geometry_msgs::msg::PoseWithCovarianceStamped>::SharedPtr
+    for_tilde_interpolator_pose_pub_;
 
   rclcpp::Service<tier4_localization_msgs::srv::PoseWithCovarianceStamped>::SharedPtr service_;
   rclcpp::Service<std_srvs::srv::SetBool>::SharedPtr service_trigger_node_;
-  tilde::TildePublisher<geometry_msgs::msg::PoseWithCovarianceStamped>::SharedPtr
-    for_tilde_interpolator_pose_pub_;
 
   tf2_ros::TransformBroadcaster tf2_broadcaster_;
 
