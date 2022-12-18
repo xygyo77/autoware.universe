@@ -431,6 +431,25 @@ void NDTScanMatcher::callback_sensor_points(
     return;
   }
 
+  // add: for tilde timing monitor mtt form topic
+  auto new_interpolator = interpolator.get_new_pose();
+  auto mtt_msg = tilde_msg::msg::MessageTrackingTag();
+  auto input = tilde_msg::msg::SubTopicTimeInfo();
+  auto output = tilde_msg::msg::PubTopicTimeInfo();
+  // input_info <- new interpolator 
+  input.topic_name = "/localization/pose_twist_fusion_filter/biased_pose_with_covariance";
+  input.has_header_stamp = true;
+  input.header_stamp = new_interpolator.header.stamp;
+  mtt_msg.input_infos.push_back(input);
+  auto stamp = this->now();
+  mtt_msg.header.stamp = stamp;
+  output.topic_name = "/localization/pose_estimator/for_tilde_interpolator_mtt";
+  output.pub_time = stamp;
+  output.has_header_stamp = true;
+  output.header_stamp = stamp;
+  mtt_msg.output_info = output;
+  for_tilde_interpolator_mtt_pub_->publish(mtt_msg);
+
   // perform ndt scan matching
   key_value_stdmap_["state"] = "Aligning";
   const NdtResult ndt_result = align(interpolator.get_current_pose().pose.pose);
@@ -486,24 +505,6 @@ void NDTScanMatcher::callback_sensor_points(
   publish_initial_to_result_distances(
     sensor_ros_time, ndt_result.pose, interpolator.get_current_pose(), interpolator.get_old_pose(),
     interpolator.get_new_pose());
-  // add: for tilde timing monitor mtt form topic
-  auto new_interpolator = interpolator.get_new_pose();
-  auto mtt_msg = tilde_msg::msg::MessageTrackingTag();
-  auto input = tilde_msg::msg::SubTopicTimeInfo();
-  auto output = tilde_msg::msg::PubTopicTimeInfo();
-  // input_info <- new interpolator 
-  input.topic_name = "/localization/pose_twist_fusion_filter/biased_pose_with_covariance";
-  input.has_header_stamp = true;
-  input.header_stamp = new_interpolator.header.stamp;
-  mtt_msg.input_infos.push_back(input);
-  auto stamp = this->now();
-  mtt_msg.header.stamp = stamp;
-  output.topic_name = "/localization/pose_estimator/for_tilde_interpolator_mtt";
-  output.pub_time = stamp;
-  output.has_header_stamp = true;
-  output.header_stamp = stamp;
-  mtt_msg.output_info = output;
-  for_tilde_interpolator_mtt_pub_->publish(mtt_msg);
 
   auto sensor_points_mapTF_ptr = std::make_shared<pcl::PointCloud<PointSource>>();
   pcl::transformPointCloud(
